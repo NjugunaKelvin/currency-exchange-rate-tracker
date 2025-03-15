@@ -14,13 +14,22 @@ if response.status_code == 200:
     data_frame = pd.DataFrame(data['rates'], index=[data['date']]).T
     data_frame.columns = ['Exchange Rate']
 
+    # Bar chart
+    data_frame.plot(kind='bar', colorbar='skyblue', legend=False)
+    plt.title('Exchange Rates for USD (latest)')
+    plt.xlabel('Currency')
+    plt.ylabel('Rate')
+    plt.xticks(rotation=45)
 
-    print('\n Exchange Rates for USD (latest): ')
-    print(data_frame)
+    plt.show()
 
-    # save to CSV
-    data_frame.to_csv('exchange_rates.csv')
-    print('\nData saved to exchange_rates.csv')
+
+    # print('\n Exchange Rates for USD (latest): ')
+    # print(data_frame)
+
+    # # save to CSV
+    # data_frame.to_csv('exchange_rates.csv')
+    # print('\nData saved to exchange_rates.csv')
     
 else:
     print('Error fetching data', response.status_code)
